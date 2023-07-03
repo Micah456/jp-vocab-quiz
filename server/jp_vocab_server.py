@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, Response
 import pandas as pd
+import json
 
 
 def load_data_to_df(file_name):
@@ -18,9 +19,13 @@ def load_data_to_dictarray(file_name):
 app = Flask("JP_Vocab Server")
 
 
-@app.route("/")
-def index():
-    return render_template("index.html")
+#@app.route("/")
+#def index():
+#    return render_template("index.html")
+
+@app.route("/data")
+def get_data():
+    return Response(json.dumps(load_data_to_dictarray("data/jlptN4VocabData.xlsx")), mimetype='application/json', status=200)
 
 
 if __name__ == "__main__":
