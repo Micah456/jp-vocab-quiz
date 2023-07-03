@@ -1,3 +1,7 @@
 Flask==2.2.2
 pandas==1.5.2
 Requests==2.29.0
+nose
+pinocchio
+coverage
+pylint
