@@ -1,4 +1,5 @@
-import unittest,jp_vocab_server as jp
+import unittest
+from server import jp_vocab_server as jp
 import pandas as pd
 
 # Server should: start server, load data into dict, send data to web page
