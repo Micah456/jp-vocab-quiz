@@ -7,7 +7,7 @@ A web app quiz on JLPT Vocabulary. Requires data file
 JS, HTML, CSS, Flask
 
 ## Current Task
-* Setup Github Actions
+* Run Github workflow again
 
 ## Remaining Tasks
 * Create flask server
@@ -18,6 +18,8 @@ JS, HTML, CSS, Flask
 ## Completed Tasks
 * Save data in suitable format
 * Load data using TDD
+* Create github workflow
+* Lint server
 
 ## Credits
 JLPT N4 Vocab Data taken from Japanese-bank.com:
