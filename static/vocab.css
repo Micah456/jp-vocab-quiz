@@ -1,0 +1,224 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #0c0324;
+    color: white;
+    font-size: 14px;
+}
+a:visited{
+    color: aqua
+}
+
+header{
+    text-align: center;
+    padding: 20px 0 0;
+}
+
+.btn{
+    background: #7455c9;
+    padding: .71em 2.14em;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    box-shadow: #0c0324 5px 5px  5px .5px;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+div.game-field{
+    background: #241845;
+    width: 75%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.label-checkbox{
+    display: flex;
+    flex-direction: row;
+}
+.label-checkbox input{
+    margin-left: 10px;
+}
+
+.very-large-font{
+    font-size: 60px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.game-header{
+    display: flex;
+    justify-content: space-between;
+    background: #0c0324;
+    border-radius: 10px; 
+    padding: 5px 10px;
+    width: 80%;
+    box-sizing: border-box;
+}
+
+.question-count, .score-count{
+    font-weight: 700;
+    font-size: 2rem;
+    padding: 0;
+    margin:0;
+}
+
+.yomi-select{
+    background: #e7deff;
+    padding: 5px 0;
+    margin-bottom: 10px;
+}
+
+/* index.html (homepage) */
+
+main.homepage-main h1{
+    margin: 0;
+}
+main.homepage-main h2{
+    margin-top: 10px;
+}
+
+div.homepage-btn-div{
+    background: #241845;
+    width: 75%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+p.homepage-btn, .main-btn{
+    background: #7455c9;
+    padding: 1rem;
+    width: 75%;
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: #0c0324 5px 5px  5px .5px;
+}
+.homepage-btn a, .homepage-btn a:visited, .main-btn a, .main-btn a:visited{
+    text-decoration: none;
+    color: white;
+}
+
+/* meaning.html*/
+
+.meaning-start-btn{
+    margin: 3rem;
+    font-size: 3rem;
+    padding: 10px 30px;
+}
+
+.meaning-start-btn:disabled{
+    background: #49494a;
+    color: grey;
+    cursor: not-allowed;
+}
+
+div#meaning-game-field{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+div.meaning-question-card, div.readings-question-card{
+    padding: 10px;
+    text-align: center;
+    justify-content: space-between;
+    width: 80%;
+    display: flex;
+}
+
+div.reading-box{
+    padding: 10px;
+    width: 40%;
+    border: solid #e7deff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around
+}
+
+div.meaning-answer-box{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 86%;
+    
+}
+div.meaning-answer-box button{
+    width: 95%;
+    padding: 7px 5px;
+    background: #e7deff;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    
+}
+
+div.question-card img{
+    background: #e7deff;
+    border-radius: 10px;
+    width: 10rem;
+}
+
+.correct-answer{
+    background: green;
+}
+.incorrect-answer{
+    background: red;
+}
+
+#meaning-feedback{
+    background: #0c0324;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0 5px;
+    text-align: center;
+}
+th{
+    border-bottom: solid white;
+    padding: 5px;
+}
+td{
+    padding: 5px;
+}
+
+/* translation */
+.translation-answer-box{
+    display: flex;
+    flex-direction: column;
+}
+
+.translation-sub-answer-box > img{
+    background: #e7deff;
+    border-radius: 10px;
+    width: 6rem;
+    cursor: pointer
+}
+
+/* vocab.html */
+div.vocab-box{
+    padding: 30px 10px;
+    width: 100%;
+    border: solid #e7deff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around
+}

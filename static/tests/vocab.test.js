@@ -1,4 +1,4 @@
-const mod = require('../vocab_functions')
+const mod = require('../vocab_func_ref.js')
 
 test('Test Options Unsuitable', () => {
     let array = [1,2,3,4]

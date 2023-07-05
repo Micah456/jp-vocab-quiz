@@ -1,4 +1,4 @@
-const mod = require('../vocab_functions')
+import * as mod from './vocab_functions.js'
 const data =
     [
         {
@@ -100,10 +100,10 @@ const data =
     ]
 
 const vocabGameFieldEl = document.getElementById("vocab-game-field")
-const vocabLeft = [0, 1, 2, 3]
 const noOptionsPerQuestion = 3
+let answerObj = {}
 
-function generateQuestion(){
+/*function generateQuestion(){
     //Get a random vocab
     let chosenVocab = Math.floor(Math.random() * vocabLeft.length)
     console.log(`Position in vocab left: ${chosenVocab}`)
@@ -132,13 +132,52 @@ function generateQuestion(){
             <button id="${data[optionOrder[3]]['Kana']}" onclick="selectAnswer()">${data[3]['English']}</button>
         </div>
     `
+}*/
+
+function generateQuestion(){
+    //Get a random vocab
+    let chosenVocabIndex = Math.floor(Math.random() * vocabLeft.length)
+    console.log(`Position in vocableft: ${chosenVocabIndex}`)
+    answerObj = data[vocabLeft[chosenVocabIndex]]
+    vocabLeft.splice(chosenVocabIndex, 1)
+    console.log(vocabLeft)
+    let optionsObjArray = []
+    do{
+        optionsObjArray = mod.getRandomSelection(noOptionsPerQuestion, data)
+    }while(mod.optionsUnsuitable(optionsObjArray, answerObj))
+    optionsObjArray.push(answerObj)
+    let optionOrder = mod.setOptionOrder(optionsObjArray.length)
+    vocabGameFieldEl.innerHTML = `
+        <div class="game-header">
+            <p class="question-count">Q.1</p>
+            <p class="score-count">Score: 0</p>
+        </div>
+        <div class="question-card meaning-question-card">
+            <div class="vocab-box">
+                ${answerObj['Kana']}
+            </div>
+        </div>
+        <div class="answer-box meaning-answer-box">
+            <button id="${optionsObjArray[optionOrder[0]]['Kana']}" onclick="selectAnswer()">${optionsObjArray[optionOrder[0]]['English']}</button>
+            <button id="${optionsObjArray[optionOrder[1]]['Kana']}" onclick="selectAnswer()">${optionsObjArray[optionOrder[1]]['English']}</button>
+            <button id="${optionsObjArray[optionOrder[2]]['Kana']}" onclick="selectAnswer()">${optionsObjArray[optionOrder[2]]['English']}</button>
+            <button id="${optionsObjArray[optionOrder[3]]['Kana']}" onclick="selectAnswer()">${optionsObjArray[optionOrder[3]]['English']}</button>
+        </div>
+    `
+    console.log("Answer: " + answerObj['Kana'])
 }
 
+
 function selectAnswer(){
-    if(event.target.id == data[0]['Kana']){
+    console.log("Response: " + event.target.id)
+    if(event.target.id == answerObj['Kana']){
         console.log("Correct")
     }
     else{
         console.log("incorrect")
     }
 }
+
+const vocabLeft = mod.setOptionOrder(data.length)
+console.log(vocabLeft)
+generateQuestion()

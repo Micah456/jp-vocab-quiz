@@ -52,6 +52,4 @@ const optionsUnsuitable = function(objArray, answerObj){
     }
     return false
 }
-
-export {setOptionOrder, getRandomSelection, checkDuplicates, arrayContains,optionsUnsuitable}
-
+module.exports={setOptionOrder, getRandomSelection, checkDuplicates, arrayContains,optionsUnsuitable}

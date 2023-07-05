@@ -8,3 +8,4 @@ coverage
 pylint
 flake8
 json
+os
