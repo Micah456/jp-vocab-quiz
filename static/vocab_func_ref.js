@@ -52,4 +52,17 @@ const optionsUnsuitable = function(objArray, answerObj){
     }
     return false
 }
-module.exports={setOptionOrder, getRandomSelection, checkDuplicates, arrayContains,optionsUnsuitable}
+
+const isCorrect = (answerObj, selected_id) => {
+    console.log("Response: " + selected_id)
+    if(selected_id == answerObj['Kana']){
+        console.log("Correct")
+        return true
+    }
+    else{
+        console.log("incorrect")
+        return false
+    }
+}
+
+module.exports={setOptionOrder, getRandomSelection, checkDuplicates, arrayContains,optionsUnsuitable, isCorrect}

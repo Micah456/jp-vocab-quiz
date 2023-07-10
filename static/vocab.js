@@ -167,12 +167,15 @@ function generateQuestion(){
     let buttonBoxEl = document.getElementById("button-box")
     let answerButtonEls = buttonBoxEl.childNodes
     for (var button of answerButtonEls) {
-        button.addEventListener("click", selectAnswer);
+        let button_id = button.id
+        button.addEventListener("click", () => {
+            mod.isCorrect(answerObj, button_id)
+        });
        }
     console.log("Answer: " + answerObj['Kana'])
 }
 
-
+/*
 function selectAnswer(){
     console.log("Response: " + event.target.id)
     if(event.target.id == answerObj['Kana']){
@@ -181,7 +184,7 @@ function selectAnswer(){
     else{
         console.log("incorrect")
     }
-}
+}*/
 
 const vocabLeft = mod.setOptionOrder(data.length)
 console.log(vocabLeft)

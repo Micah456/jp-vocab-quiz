@@ -78,3 +78,13 @@ test('Test Check Duplicates', () => {
     expect(mod.checkDuplicates(array3)).toBe(true)
     expect(mod.checkDuplicates(array4)).toBe(true)
 })
+
+test('Test Is Correct', () => {
+    let answerObj = {
+        'Kana': 'Correct'
+    }
+    let correct = 'Correct'
+    let incorrect = 'Incorrect'
+    expect(mod.isCorrect(answerObj, correct)).toBe(true)
+    expect(mod.isCorrect(answerObj, incorrect)).toBe(false)
+})
