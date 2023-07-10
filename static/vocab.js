@@ -157,13 +157,18 @@ function generateQuestion(){
                 ${answerObj['Kana']}
             </div>
         </div>
-        <div class="answer-box meaning-answer-box">
-            <button id="${optionsObjArray[optionOrder[0]]['Kana']}" onclick="selectAnswer()">${optionsObjArray[optionOrder[0]]['English']}</button>
-            <button id="${optionsObjArray[optionOrder[1]]['Kana']}" onclick="selectAnswer()">${optionsObjArray[optionOrder[1]]['English']}</button>
-            <button id="${optionsObjArray[optionOrder[2]]['Kana']}" onclick="selectAnswer()">${optionsObjArray[optionOrder[2]]['English']}</button>
-            <button id="${optionsObjArray[optionOrder[3]]['Kana']}" onclick="selectAnswer()">${optionsObjArray[optionOrder[3]]['English']}</button>
+        <div class="answer-box meaning-answer-box" id="button-box">
+            <button id="${optionsObjArray[optionOrder[0]]['Kana']}">${optionsObjArray[optionOrder[0]]['English']}</button>
+            <button id="${optionsObjArray[optionOrder[1]]['Kana']}">${optionsObjArray[optionOrder[1]]['English']}</button>
+            <button id="${optionsObjArray[optionOrder[2]]['Kana']}">${optionsObjArray[optionOrder[2]]['English']}</button>
+            <button id="${optionsObjArray[optionOrder[3]]['Kana']}">${optionsObjArray[optionOrder[3]]['English']}</button>
         </div>
     `
+    let buttonBoxEl = document.getElementById("button-box")
+    let answerButtonEls = buttonBoxEl.childNodes
+    for (var button of answerButtonEls) {
+        button.addEventListener("click", selectAnswer);
+       }
     console.log("Answer: " + answerObj['Kana'])
 }
 
