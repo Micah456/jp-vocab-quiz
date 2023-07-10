@@ -161,7 +161,7 @@ div.meaning-answer-box{
     width: 86%;
     
 }
-div.meaning-answer-box button{
+.meaning-answer-box button{
     width: 95%;
     padding: 7px 5px;
     background: #e7deff;
@@ -177,12 +177,13 @@ div.question-card img{
     width: 10rem;
 }
 
-.correct-answer{
-    background: green;
+button.correct-answer{
+    background-color: green;
 }
-.incorrect-answer{
-    background: red;
+button.incorrect-answer{
+    background-color: red;
 }
+
 
 #meaning-feedback{
     background: #0c0324;

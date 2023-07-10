@@ -8,10 +8,12 @@ JS, HTML, CSS, Flask
 
 ## Current Task
 Create App Logic using TDD
-* Next question logic - highlight correct answer\
-highlight incorrect answer if chosen\
-pause\
-get next question\
+* Next question logic - highlight correct answer - DONE\
+highlight incorrect answer if chosen - DONE\
+pause - DONE\
+Add scoring\
+Add whether answer is correct or not in array (like how I did in kanji app)
+get next question (NOTE: question number will automatically be incremented - see ```function nextQuestion()```)\
 rinse repeat until all questions done\
 execute finish function when all questions done\
 ```console.log("finished")``` - for now

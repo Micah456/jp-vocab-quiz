@@ -102,6 +102,8 @@ const data =
 const vocabGameFieldEl = document.getElementById("vocab-game-field")
 const noOptionsPerQuestion = 3
 let answerObj = {}
+const score = 0
+const questionNo = 1
 
 /*function generateQuestion(){
     //Get a random vocab
@@ -149,8 +151,8 @@ function generateQuestion(){
     let optionOrder = mod.setOptionOrder(optionsObjArray.length)
     vocabGameFieldEl.innerHTML = `
         <div class="game-header">
-            <p class="question-count">Q.1</p>
-            <p class="score-count">Score: 0</p>
+            <p class="question-count">Q.${questionNo}</p>
+            <p class="score-count">Score: ${score}</p>
         </div>
         <div class="question-card meaning-question-card">
             <div class="vocab-box">
@@ -169,7 +171,10 @@ function generateQuestion(){
     for (var button of answerButtonEls) {
         let button_id = button.id
         button.addEventListener("click", () => {
-            mod.isCorrect(answerObj, button_id)
+            if(mod.isCorrect(answerObj, button_id)){
+               score++
+            }
+            showAnswer(answerObj['Kana']) // Will trigger next question
         });
        }
     console.log("Answer: " + answerObj['Kana'])
@@ -185,6 +190,32 @@ function selectAnswer(){
         console.log("incorrect")
     }
 }*/
+
+function nextQuestion(){
+    console.log("To implement next question")
+    questionNo++
+}
+
+function showAnswer(correct_id){
+    let buttonBoxEl = document.getElementById("button-box")
+    console.log(buttonBoxEl)
+    let answerButtonEls = buttonBoxEl.getElementsByTagName("button")
+    //console.log(answerButtonEls)
+    for (let button of answerButtonEls){
+        let classToAdd
+        if(button.id == correct_id){
+            classToAdd = "correct-answer"
+        }
+        else{
+            classToAdd = "incorrect-answer"
+        }
+        document.getElementById(button.id).classList.add(classToAdd)
+        setTimeout(function(){
+            button.classList.remove(classToAdd)
+        }, 1500)
+    }
+}
+
 
 const vocabLeft = mod.setOptionOrder(data.length)
 console.log(vocabLeft)
