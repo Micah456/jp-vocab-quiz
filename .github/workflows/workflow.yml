@@ -32,7 +32,11 @@ jobs:
       - name: Lint with ESLint
         run: |
           cd static
+          echo Running ESLint in $(pwd)
           npm run lint
       - name: Run unit tests with jest
-        run: npm test
+        run: |
+          cd static
+          echo Running jest in $(pwd)
+          npm test
         
