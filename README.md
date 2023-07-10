@@ -7,13 +7,20 @@ A web app quiz on JLPT Vocabulary. Requires data file
 JS, HTML, CSS, Flask
 
 ## Current Task
-* Create App Logic using TDD
-Note: I'm currently running tests using jest. Thus I'm using modules in this version but not in the scrimba version
-I need to keep both up to date just in case I have any problems while using modules. Currently I'm in the process
-of creating the tests for the initial helper functions (the ones that create the questions). Finish that first.
-Afterwards, test manually that the questions come up and can be clicked to show a console log of correct or incorrect.
+Create App Logic using TDD
+* Next question logic - highlight correct answer\
+highlight incorrect answer if chosen\
+pause\
+get next question\
+rinse repeat until all questions done\
+execute finish function when all questions done\
+```console.log("finished")``` - for now
 
 ## Remaining Tasks
+### App logic:
+* Scoring
+* Keep track of points
+### Other:
 * Create flask server
 * Create requirements.txt
 
@@ -24,6 +31,10 @@ Afterwards, test manually that the questions come up and can be clicked to show 
 * Lint server
 * Run Github workflow again and fix problems until all stages successful
 * Create app markup and styling
+
+## Notes
+* I'm currently running tests using jest. Thus I'm using modules in this version but not in the scrimba version
+I need to keep both up to date just in case I have any problems while using modules.
 
 ## Credits
 JLPT N4 Vocab Data taken from Japanese-bank.com:
