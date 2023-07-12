@@ -101,7 +101,10 @@ const data =
 
 const vocabGameFieldEl = document.getElementById("vocab-game-field")
 const noOptionsPerQuestion = 3
+const feedbackTracker = []
 let answerObj = {}
+let score = 0
+let questionNo = 1
 
 /*function generateQuestion(){
     //Get a random vocab
@@ -135,22 +138,27 @@ let answerObj = {}
 }*/
 
 function generateQuestion(){
-    //Get a random vocab
+    //Get a random vocab as answer
     let chosenVocabIndex = Math.floor(Math.random() * vocabLeft.length)
     console.log(`Position in vocableft: ${chosenVocabIndex}`)
     answerObj = data[vocabLeft[chosenVocabIndex]]
+    //Remove chosen vocab from vocabLeft
     vocabLeft.splice(chosenVocabIndex, 1)
-    console.log(vocabLeft)
+    console.log("Vocab remaining: " + vocabLeft)
+    //Get remaining options and make sure no duplicates
     let optionsObjArray = []
     do{
         optionsObjArray = mod.getRandomSelection(noOptionsPerQuestion, data)
     }while(mod.optionsUnsuitable(optionsObjArray, answerObj))
+    //Add answer to options
     optionsObjArray.push(answerObj)
+    //Generate order
     let optionOrder = mod.setOptionOrder(optionsObjArray.length)
+    //Build page
     vocabGameFieldEl.innerHTML = `
         <div class="game-header">
-            <p class="question-count">Q.1</p>
-            <p class="score-count">Score: 0</p>
+            <p class="question-count">Q.${questionNo}</p>
+            <p class="score-count">Score: ${score}</p>
         </div>
         <div class="question-card meaning-question-card">
             <div class="vocab-box">
@@ -164,12 +172,21 @@ function generateQuestion(){
             <button id="${optionsObjArray[optionOrder[3]]['Kana']}">${optionsObjArray[optionOrder[3]]['English']}</button>
         </div>
     `
+    // Add event listeners to buttons
     let buttonBoxEl = document.getElementById("button-box")
     let answerButtonEls = buttonBoxEl.childNodes
     for (var button of answerButtonEls) {
         let button_id = button.id
         button.addEventListener("click", () => {
-            mod.isCorrect(answerObj, button_id)
+            //If correct increase score. Always show answer and get next question
+            let answerCorrect = mod.isCorrect(answerObj, button_id)
+            if(answerCorrect){
+               score++
+            }
+            feedbackTracker.push(mod.generateFeedback(answerObj, questionNo, answerCorrect))
+            console.log(feedbackTracker)
+            showAnswer(answerObj['Kana'])
+            setTimeout(nextQuestion, 1550)
         });
        }
     console.log("Answer: " + answerObj['Kana'])
@@ -185,6 +202,42 @@ function selectAnswer(){
         console.log("incorrect")
     }
 }*/
+
+function nextQuestion(){
+    if(vocabLeft.length > 0){
+        questionNo++
+        generateQuestion()
+    }
+    else{
+        endGame()
+    }
+}
+
+function endGame(){
+    console.log("Game over!")
+    console.log("Total Score: ", score)
+}
+
+function showAnswer(correct_id){
+    let buttonBoxEl = document.getElementById("button-box")
+    console.log(buttonBoxEl)
+    let answerButtonEls = buttonBoxEl.getElementsByTagName("button")
+    //console.log(answerButtonEls)
+    for (let button of answerButtonEls){
+        let classToAdd
+        if(button.id == correct_id){
+            classToAdd = "correct-answer"
+        }
+        else{
+            classToAdd = "incorrect-answer"
+        }
+        document.getElementById(button.id).classList.add(classToAdd)
+        setTimeout(function(){
+            button.classList.remove(classToAdd)
+        }, 1500)
+    }
+}
+
 
 const vocabLeft = mod.setOptionOrder(data.length)
 console.log(vocabLeft)
