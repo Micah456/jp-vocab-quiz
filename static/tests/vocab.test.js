@@ -88,3 +88,16 @@ test('Test Is Correct', () => {
     expect(mod.isCorrect(answerObj, correct)).toBe(true)
     expect(mod.isCorrect(answerObj, incorrect)).toBe(false)
 })
+
+test('Test Generate Feedback', () => {
+    let answerObj = {
+        Kana: "insert_kana"
+    }
+    let questionNo = 3
+    let correct = false
+    let feedback = mod.generateFeedback(answerObj, questionNo, correct)
+    expect(feedback).toBeInstanceOf(Object)
+    expect(feedback.answerObj['Kana']).toBe("insert_kana")
+    expect(feedback.questionNo).toBe(questionNo)
+    expect(feedback.correct).toBe(correct)
+})

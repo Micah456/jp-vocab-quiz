@@ -65,5 +65,14 @@ const isCorrect = (answerObj, selected_id) => {
     }
 }
 
-export {setOptionOrder, getRandomSelection, checkDuplicates, arrayContains,optionsUnsuitable, isCorrect}
+const generateFeedback = (answerObj, questionNo, correct) => {
+    let feedback = {
+        answerObj: answerObj,
+        questionNo: questionNo,
+        correct: correct
+    }
+    return feedback
+}
+
+export {setOptionOrder, getRandomSelection, checkDuplicates, arrayContains,optionsUnsuitable, isCorrect, generateFeedback}
 

@@ -11,12 +11,12 @@ Create App Logic using TDD
 * Next question logic - highlight correct answer - DONE\
 highlight incorrect answer if chosen - DONE\
 pause - DONE\
-Add scoring\
-Add whether answer is correct or not in array (like how I did in kanji app)
-get next question (NOTE: question number will automatically be incremented - see ```function nextQuestion()```)\
-rinse repeat until all questions done\
+Add scoring - DONE\
+Add whether answer is correct or not in array (like how I did in kanji app) - DONE\
+get next question (NOTE: question number will automatically be incremented - see ```function nextQuestion()```) - DONE\
+rinse repeat until all questions done - DONE\
 execute finish function when all questions done\
-```console.log("finished")``` - for now
+```console.log("finished")``` - for now - DONE
 
 ## Remaining Tasks
 ### App logic:

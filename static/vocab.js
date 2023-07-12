@@ -101,6 +101,7 @@ const data =
 
 const vocabGameFieldEl = document.getElementById("vocab-game-field")
 const noOptionsPerQuestion = 3
+const feedbackTracker = []
 let answerObj = {}
 let score = 0
 let questionNo = 1
@@ -178,9 +179,12 @@ function generateQuestion(){
         let button_id = button.id
         button.addEventListener("click", () => {
             //If correct increase score. Always show answer and get next question
-            if(mod.isCorrect(answerObj, button_id)){
+            let answerCorrect = mod.isCorrect(answerObj, button_id)
+            if(answerCorrect){
                score++
             }
+            feedbackTracker.push(mod.generateFeedback(answerObj, questionNo, answerCorrect))
+            console.log(feedbackTracker)
             showAnswer(answerObj['Kana'])
             setTimeout(nextQuestion, 1550)
         });
