@@ -74,5 +74,34 @@ const generateFeedback = (answerObj, questionNo, correct) => {
     return feedback
 }
 
-export {setOptionOrder, getRandomSelection, checkDuplicates, arrayContains,optionsUnsuitable, isCorrect, generateFeedback}
+const splitQuestions = (totalQuestions, numberOfSplits) => {
+    let totalPerSplit = Math.floor(totalQuestions / numberOfSplits)
+    let splits = []
+    for(let i = 0; i<numberOfSplits - 1; i++){
+        splits.push(totalPerSplit)
+        totalQuestions -= totalPerSplit
+    }
+    splits.push(totalQuestions)
+    return splits
+}
+
+const getSetBySplit = (data, splits, setNumber) => { //set number is 1-indexed
+    let startIndex = splits[0] * (setNumber - 1)
+    let endIndex = startIndex + splits[setNumber-1]
+    let set = []
+    for(let i = startIndex; i<endIndex; i++){
+        set.push(data[i])
+    }
+    // Total = 20,  Splits = [6, 6, 8]
+    // set 1: start = 0 end(exclusive) = 6
+    // set 2: start = 6 end(exclusive) = 12
+    // set 3: start = 12 end(exclusive) = 20
+
+    // set 1: start = split[0] * 0 end(exclusive) = start + split[0]
+    // set 2: start = split[0] * 1 end(exclusive) = start + split[1]
+    // set 3: start = split[0] * 2 end(exclusive) = start + split[2]
+    return set
+}
+
+export {setOptionOrder, getRandomSelection, checkDuplicates, arrayContains,optionsUnsuitable, isCorrect, generateFeedback, splitQuestions, getSetBySplit}
 
