@@ -101,3 +101,67 @@ test('Test Generate Feedback', () => {
     expect(feedback.questionNo).toBe(questionNo)
     expect(feedback.correct).toBe(correct)
 })
+
+test('Test Split Questions', () => {
+    let questions = []
+    for(let i = 0; i < 20; i++){
+        questions.push(`Question ${i + 1}`)
+    }
+    expect(questions).toHaveLength(20)
+    let splits = mod.splitQuestions(questions.length, 3)
+    expect(splits).toHaveLength(3)
+    expect(splits[0]).toBe(6)
+    expect(splits[1]).toBe(6)
+    expect(splits[2]).toBe(8)
+    splits = mod.splitQuestions(questions.length, 5)
+    expect(splits).toHaveLength(5)
+    expect(splits[0]).toBe(4)
+    expect(splits[1]).toBe(4)
+    expect(splits[2]).toBe(4)
+    expect(splits[3]).toBe(4)
+    expect(splits[4]).toBe(4)
+})
+
+test('Test Get Set By Split', () => {
+    let questions = []
+    for(let i = 0; i < 20; i++){
+        questions.push(`Question ${i + 1}`)
+    }
+    expect(questions).toHaveLength(20)
+    let splits = mod.splitQuestions(questions.length, 3)
+    expect(splits).toEqual([6,6,8])
+    let set1 = mod.getSetBySplit(questions, splits, 1)
+    let set2 = mod.getSetBySplit(questions, splits, 2)
+    let set3 = mod.getSetBySplit(questions, splits, 3)
+    for(let i = 0; i < 6; i++){
+        expect(set1[i]).toBe(`Question ${i + 1}`)
+    }
+    for(let i = 0; i < 6; i++){
+        expect(set2[i]).toBe(`Question ${i + 7}`)
+    }
+    for(let i = 0; i < 8; i++){
+        expect(set3[i]).toBe(`Question ${i + 13}`)
+    }
+    splits = mod.splitQuestions(questions.length, 5)
+    expect(splits).toEqual([4,4,4,4,4])
+    set1 = mod.getSetBySplit(questions, splits, 1)
+    set2 = mod.getSetBySplit(questions, splits, 2)
+    set3 = mod.getSetBySplit(questions, splits, 3)
+    set4 = mod.getSetBySplit(questions, splits, 4)
+    set5 = mod.getSetBySplit(questions, splits, 5)
+    for(let i = 0; i < 4; i++){
+        expect(set1[i]).toBe(`Question ${i + 1}`)
+    }
+    for(let i = 0; i < 4; i++){
+        expect(set2[i]).toBe(`Question ${i + 5}`)
+    }
+    for(let i = 0; i < 4; i++){
+        expect(set3[i]).toBe(`Question ${i + 9}`)
+    }
+    for(let i = 0; i < 4; i++){
+        expect(set4[i]).toBe(`Question ${i + 13}`)
+    }
+    for(let i = 0; i < 4; i++){
+        expect(set5[i]).toBe(`Question ${i + 17}`)
+    }
+})

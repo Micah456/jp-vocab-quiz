@@ -1,5 +1,8 @@
 const tableEl = document.getElementById("feedback-table")
 const finalScoreEl = document.getElementById("final-score")
+const setNumberEl = document.getElementById("set-number")
+const setNumber = getSetNumber()
+setNumberEl.textContent = `Set Number: ${setNumber}`
 const rawData = JSON.parse(localStorage.getItem("feedback"))
 const score = JSON.parse(localStorage.getItem("score"))
 const calculatedScore = `${score}/${rawData.length}`
@@ -29,6 +32,12 @@ function populateTable(){
         rows += generateRow(feedbackObj)
     })
     tableEl.innerHTML += rows
+}
+
+function getSetNumber(){
+    const URIs = window.location.pathname
+    const URIParams = URIs.split("/")
+    return parseInt(URIParams[URIParams.length - 2])
 }
 finalScoreEl.textContent = calculatedScore
 populateTable()

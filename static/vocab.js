@@ -1,6 +1,6 @@
 import * as mod from './vocab_functions.js'
 localStorage.clear()
-const data =
+/*const data =
     [
         {
             "Kana": "1. ああ",
@@ -98,11 +98,13 @@ const data =
             "English": "relief",
             "Type": "noun; na-adjective (keiyodoshi) ~suru verb; intransitive verb"
         }
-    ]
+    ]*/
 
 const vocabGameFieldEl = document.getElementById("vocab-game-field")
+const setNumberEl = document.getElementById("set-number")
 const noOptionsPerQuestion = 3
 const feedbackTracker = []
+const numberOfSplits = 3
 let answerObj = {}
 let score = 0
 let questionNo = 1
@@ -241,9 +243,25 @@ function showAnswer(correct_id){
         }, 1500)
     }
 }
+const baseURL = window.location.origin
+const setNumber = getSetNumber()
+setNumberEl.textContent = `Set Number: ${setNumber}`
+let data = []
+let vocabLeft = []
+fetch(`${baseURL}/data`)
+    .then(resp => resp.json())
+    .then(rawData => {
+        console.log(rawData)
+        let splits = mod.splitQuestions(rawData.length, numberOfSplits)
+        data = mod.getSetBySplit(rawData, splits, setNumber)
+        console.log(data)
+        vocabLeft = mod.setOptionOrder(data.length)
+        console.log(vocabLeft)
+        generateQuestion()
+    })
 
-
-
-const vocabLeft = mod.setOptionOrder(data.length)
-console.log(vocabLeft)
-generateQuestion()
+function getSetNumber(){
+    const URIs = window.location.pathname
+    const URIParams = URIs.split("/")
+    return parseInt(URIParams[URIParams.length - 1])
+}
