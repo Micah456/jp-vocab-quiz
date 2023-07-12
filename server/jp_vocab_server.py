@@ -26,6 +26,10 @@ app = Flask("JP_Vocab Server", template_folder=template_dir, static_folder=stati
 def index():
     return render_template("vocab.html")
 
+@app.route("/feedback")
+def feedback():
+    return render_template("feedback.html")
+
 
 @app.route("/data")
 def get_data():
