@@ -8,11 +8,10 @@ JS, HTML, CSS, Flask
 
 ## Current Task
 Create App Logic using TDD
-* End screen and feedback - display table showing which questions were right or wrong and show total score
+* Create landing page where you choose which set of vocab to use
 
 ## Remaining Tasks
 * Load data into app from server
-* Create landing page where you choose which set of vocab to use
 
 ## Completed Tasks
 * Save data in suitable format
@@ -24,6 +23,7 @@ Create App Logic using TDD
 * Create flask server
 * Create requirements.txt
 * Create js logic
+* End screen and feedback - display table showing which questions were right or wrong and show total score
 
 ## Notes
 * I'm currently running tests using jest. Thus I'm using modules in this version but not in the scrimba version
