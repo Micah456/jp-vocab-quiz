@@ -1,30 +1,19 @@
 const tableEl = document.getElementById("feedback-table")
-const raw_data = [
-    {
-        answerObj : {
-            "Kana": "1. ああ",
-            "Romaji": "aa",
-            "English": "like that; so",
-            "Type": "adverb (fukushi)"
-        },
-        questionNo: 1,
-        correct: true
-    },
-    {
-        answerObj : {
-            "Kana": "13. あ, あっ",
-            "Romaji": "a, ats",
-            "English": "ah; oh (surprise)",
-            "Type": "expression"
-        },
-        questionNo: 13,
-        correct: false
-    }
-]
+const finalScoreEl = document.getElementById("final-score")
+const rawData = JSON.parse(localStorage.getItem("feedback"))
+const score = JSON.parse(localStorage.getItem("score"))
+const calculatedScore = `${score}/${rawData.length}`
 
 function generateRow(feedbackObj){
+    let rowColour = ""
+    if(feedbackObj.correct){
+        rowColour = "lightgreen"
+    }
+    else{
+        rowColour = "red"
+    }
     let row = `
-    <tr>
+    <tr style="color:${rowColour}">
         <td>${feedbackObj.questionNo}</td>
         <td>${feedbackObj.answerObj.Kana}</td>
         <td>${feedbackObj.answerObj.English}</td>
@@ -36,10 +25,10 @@ function generateRow(feedbackObj){
 
 function populateTable(){
     let rows = ""
-    raw_data.forEach((feedbackObj) => {
+    rawData.forEach((feedbackObj) => {
         rows += generateRow(feedbackObj)
     })
     tableEl.innerHTML += rows
 }
-
+finalScoreEl.textContent = calculatedScore
 populateTable()

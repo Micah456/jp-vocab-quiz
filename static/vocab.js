@@ -1,4 +1,5 @@
 import * as mod from './vocab_functions.js'
+localStorage.clear()
 const data =
     [
         {
@@ -216,6 +217,9 @@ function nextQuestion(){
 function endGame(){
     console.log("Game over!")
     console.log("Total Score: ", score)
+    localStorage.setItem("feedback", JSON.stringify(feedbackTracker));
+    localStorage.setItem("score", score)
+    window.location.href+="feedback"
 }
 
 function showAnswer(correct_id){
@@ -237,6 +241,7 @@ function showAnswer(correct_id){
         }, 1500)
     }
 }
+
 
 
 const vocabLeft = mod.setOptionOrder(data.length)
