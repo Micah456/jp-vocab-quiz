@@ -1,6 +1,6 @@
 {
     "scripts": {
     "test": "jest",
-    "lint": "eslint -c config.eslintrc.json vocab.js vocab_functions.js vocab_func_ref.js"
+    "lint": "eslint -c config.eslintrc.json vocab.js vocab_functions.js vocab_func_ref.js feedback.js"
   }
 }
