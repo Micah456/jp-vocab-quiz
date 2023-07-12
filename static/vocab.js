@@ -102,8 +102,8 @@ const data =
 const vocabGameFieldEl = document.getElementById("vocab-game-field")
 const noOptionsPerQuestion = 3
 let answerObj = {}
-const score = 0
-const questionNo = 1
+let score = 0
+let questionNo = 1
 
 /*function generateQuestion(){
     //Get a random vocab
@@ -137,18 +137,23 @@ const questionNo = 1
 }*/
 
 function generateQuestion(){
-    //Get a random vocab
+    //Get a random vocab as answer
     let chosenVocabIndex = Math.floor(Math.random() * vocabLeft.length)
     console.log(`Position in vocableft: ${chosenVocabIndex}`)
     answerObj = data[vocabLeft[chosenVocabIndex]]
+    //Remove chosen vocab from vocabLeft
     vocabLeft.splice(chosenVocabIndex, 1)
-    console.log(vocabLeft)
+    console.log("Vocab remaining: " + vocabLeft)
+    //Get remaining options and make sure no duplicates
     let optionsObjArray = []
     do{
         optionsObjArray = mod.getRandomSelection(noOptionsPerQuestion, data)
     }while(mod.optionsUnsuitable(optionsObjArray, answerObj))
+    //Add answer to options
     optionsObjArray.push(answerObj)
+    //Generate order
     let optionOrder = mod.setOptionOrder(optionsObjArray.length)
+    //Build page
     vocabGameFieldEl.innerHTML = `
         <div class="game-header">
             <p class="question-count">Q.${questionNo}</p>
@@ -166,15 +171,18 @@ function generateQuestion(){
             <button id="${optionsObjArray[optionOrder[3]]['Kana']}">${optionsObjArray[optionOrder[3]]['English']}</button>
         </div>
     `
+    // Add event listeners to buttons
     let buttonBoxEl = document.getElementById("button-box")
     let answerButtonEls = buttonBoxEl.childNodes
     for (var button of answerButtonEls) {
         let button_id = button.id
         button.addEventListener("click", () => {
+            //If correct increase score. Always show answer and get next question
             if(mod.isCorrect(answerObj, button_id)){
                score++
             }
-            showAnswer(answerObj['Kana']) // Will trigger next question
+            showAnswer(answerObj['Kana'])
+            setTimeout(nextQuestion, 1550)
         });
        }
     console.log("Answer: " + answerObj['Kana'])
@@ -192,8 +200,18 @@ function selectAnswer(){
 }*/
 
 function nextQuestion(){
-    console.log("To implement next question")
-    questionNo++
+    if(vocabLeft.length > 0){
+        questionNo++
+        generateQuestion()
+    }
+    else{
+        endGame()
+    }
+}
+
+function endGame(){
+    console.log("Game over!")
+    console.log("Total Score: ", score)
 }
 
 function showAnswer(correct_id){
