@@ -39,7 +39,10 @@ def feedback(set):
 
 @app.route("/data")
 def get_data():
-    return Response(json.dumps(load_data_to_dictarray("../data/jlptN4VocabData.xlsx")), mimetype='application/json', status=200)
+    return Response(
+        json.dumps(load_data_to_dictarray("../data/jlptN4VocabData.xlsx")),
+        mimetype='application/json',
+        status=200)
 
 
 if __name__ == "__main__":
