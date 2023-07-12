@@ -24,11 +24,16 @@ app = Flask("JP_Vocab Server", template_folder=template_dir, static_folder=stati
 
 @app.route("/")
 def index():
+    return render_template("index.html")
+
+
+@app.route("/sets/<set>")
+def vocab(set):
     return render_template("vocab.html")
 
 
-@app.route("/feedback")
-def feedback():
+@app.route("/sets/<set>/feedback")
+def feedback(set):
     return render_template("feedback.html")
 
 
