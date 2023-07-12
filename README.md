@@ -8,23 +8,11 @@ JS, HTML, CSS, Flask
 
 ## Current Task
 Create App Logic using TDD
-* Next question logic - highlight correct answer - DONE\
-highlight incorrect answer if chosen - DONE\
-pause - DONE\
-Add scoring - DONE\
-Add whether answer is correct or not in array (like how I did in kanji app) - DONE\
-get next question (NOTE: question number will automatically be incremented - see ```function nextQuestion()```) - DONE\
-rinse repeat until all questions done - DONE\
-execute finish function when all questions done\
-```console.log("finished")``` - for now - DONE
+* End screen and feedback - display table showing which questions were right or wrong and show total score
 
 ## Remaining Tasks
-### App logic:
-* Scoring
-* Keep track of points
-### Other:
-* Create flask server
-* Create requirements.txt
+* Load data into app from server
+* Create landing page where you choose which set of vocab to use
 
 ## Completed Tasks
 * Save data in suitable format
@@ -33,6 +21,9 @@ execute finish function when all questions done\
 * Lint server
 * Run Github workflow again and fix problems until all stages successful
 * Create app markup and styling
+* Create flask server
+* Create requirements.txt
+* Create js logic
 
 ## Notes
 * I'm currently running tests using jest. Thus I'm using modules in this version but not in the scrimba version

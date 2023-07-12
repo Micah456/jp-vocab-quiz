@@ -27,6 +27,11 @@ def index():
     return render_template("vocab.html")
 
 
+@app.route("/feedback")
+def feedback():
+    return render_template("feedback.html")
+
+
 @app.route("/data")
 def get_data():
     return Response(json.dumps(load_data_to_dictarray("data/jlptN4VocabData.xlsx")), mimetype='application/json', status=200)
